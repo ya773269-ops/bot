@@ -1,0 +1,24 @@
+name: Run Selenium with Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  selenium-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      # خطوة 1: تنزيل الكود من GitHub
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # خطوة 2: بناء وتشغيل Docker container
+      - name: Build and Run Docker container
+        run: |
+          docker build -t selenium-script .
+          docker run selenium-script
